@@ -1,48 +1,33 @@
 package practiceProblems;
-import java.util.Random;
 
-	class UC5MonthWage {   
-	    private static final int wagePerHour=20;
-	    private static int fullDayHour=0; 
-	    private static double totalWage;	
-		private static final int numberOfDays=20;
-		
-		public void empCheck() {   
-			Random ran=new Random();
-			double wage=0;
-			for(int i=0; i<20; i++) {
-				final int IS_Present=ran.nextInt(3);
-				
-				switch(IS_Present) {
-				case 1:
-						fullDayHour=8;
-						 break;
+public class UC5MonthWage {   
+	public static final int IS_FULL_TIME=1;
+		public static final int IS_PART_TIME=2;
+		public static final int EMP_RATE_PER_HOUR=20;
+		public static final int NUM_OF_WORKING_DAYS=20;
 
-				case 2:
-						fullDayHour=4;
-						 break;
-				case 0:
-						 break;
-				default:
-					System.out.println("Invalid Value");
-					
-				}
-				
-				wage=UC5MonthWage.dailyWageCalculation(fullDayHour);
-				totalWage+=wage;
-					
-			}
-			System.out.println("The wage of the Person is: "+totalWage);
-		}
-	   
-		public static double dailyWageCalculation(int fullDayHour) {   
-			return (wagePerHour*fullDayHour);
-		}
-
-		public static void main(String[] args){  
-			UC5MonthWage E1 =new UC5MonthWage();
-			E1.empCheck();
-
+		public static void main(String[] args)
+		{
+			int empHrs=0;
+			int empWage=0,totalEmpWage=0;
+			for(int day=1;day< NUM_OF_WORKING_DAYS;day++){
+  			double empCheck=Math.floor(Math.random()*10)%3;
+  			switch((int)empCheck)
+  			{
+  			case IS_PART_TIME:
+        			empHrs=4;
+        			break;
+  			case IS_FULL_TIME:
+        			empHrs=8;
+        			break;
+  			default:
+     				empHrs=0;
+  			}
+  			empWage=empHrs*EMP_RATE_PER_HOUR;
+  			totalEmpWage+=empWage;
+  			System.out.println("Emp wage on day "+day+" is : "+empWage);
+  			}
+  			System.out.println("Employee Wage "+totalEmpWage);
 		}
 	}
 		
